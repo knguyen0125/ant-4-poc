@@ -4,6 +4,11 @@ import { reverse, sortBy } from "lodash";
 import loadable from "@loadable/component";
 
 import routeMap from "./routeMap";
+import DefaultLayout from "../../../layout/DefaultLayout";
+import Login from "../../../views/WebAuthentication/Login";
+import PrivateRoute from "../PrivateRoute";
+import { useSelector } from "react-redux";
+import { menuSelector } from "../../../store/modules/menu";
 
 const NotFound = loadable(() => import("../../../views/Exceptions/NotFound"));
 const ServerError = loadable(() =>
@@ -13,17 +18,14 @@ const Unauthorized = loadable(() =>
   import("../../../views/Exceptions/Unauthorized")
 );
 
-const SwitchBoard = ({ routes }) => {
-  const sortedRoutes = useMemo(
-    () => reverse(sortBy(routes, route => route.path.length)),
-    [routes]
-  );
+const SwitchBoard = () => {
+  const sortedRoutes = useSelector(menuSelector);
 
   return (
     <Switch>
       {sortedRoutes.map(route => {
         let Component = routeMap[route.component];
-        const PathRoute = Route;
+        const PathRoute = route.isPrivate ? PrivateRoute : Route;
 
         if (!Component) {
           Component = NotFound;
@@ -31,22 +33,34 @@ const SwitchBoard = ({ routes }) => {
 
         return (
           <PathRoute key={route.path} path={route.path} exact={route.isExact}>
-            <Component />
+            <DefaultLayout>
+              <Component />
+            </DefaultLayout>
           </PathRoute>
         );
       })}
-
+      <Route path="/login" exact>
+        <Login />
+      </Route>
       <Route path="/exceptions/500" exact>
-        <ServerError />
+        <DefaultLayout>
+          <ServerError />
+        </DefaultLayout>
       </Route>
       <Route path="/exceptions/404" exact>
-        <NotFound />
+        <DefaultLayout>
+          <NotFound />
+        </DefaultLayout>
       </Route>
       <Route path="/exceptions/403" exact>
-        <Unauthorized />
+        <DefaultLayout>
+          <Unauthorized />
+        </DefaultLayout>
       </Route>
       <Route path="*">
-        <NotFound />
+        <DefaultLayout>
+          <NotFound />
+        </DefaultLayout>
       </Route>
     </Switch>
   );

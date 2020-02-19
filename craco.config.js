@@ -7,7 +7,6 @@ module.exports = {
     plugins: [
       "lodash",
       "@loadable/babel-plugin",
-      // ["import", { libraryName: "antd", style: true, libraryDirectory: "es" }]
     ]
   },
   webpack: {

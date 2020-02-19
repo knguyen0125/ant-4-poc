@@ -1,15 +1,15 @@
-import React, {useMemo, useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Layout, Menu } from "antd";
 import { Link } from "react-router-dom";
-import { sortBy } from "lodash";
-import {generateMenu, getDefaultOpenKeys} from "../utils";
+import { getDefaultOpenKeys } from "../utils";
+import { useSelector } from "react-redux";
+import { menuSelector, treeMenuSelector } from "../../../store/modules/menu";
 
 const { Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 
 const Navbar = ({
-  routes,
   collapsible,
   collapsed,
   onCollapse,
@@ -17,15 +17,15 @@ const Navbar = ({
   breakpoint,
   onBreakpoint
 }) => {
-  const sortedRoutes = useMemo(() => sortBy(generateMenu(routes), ["order", "id"]), [routes]);
+  const treeRoute = useSelector(treeMenuSelector);
+  const flatRoute = useSelector(menuSelector);
   const { pathname } = useLocation();
   const [defaultOpenKeys, setDefaultOpenKeys] = useState(null);
 
   // Getting default open keys is computationally intensive, and we only need to run it once when screen first start up
   useEffect(() => {
-    setDefaultOpenKeys(getDefaultOpenKeys(routes, pathname))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    setDefaultOpenKeys(getDefaultOpenKeys(flatRoute, pathname));
+  }, [flatRoute, pathname]);
 
   if (!defaultOpenKeys) return null;
 
@@ -66,8 +66,13 @@ const Navbar = ({
       breakpoint={breakpoint}
       onBreakpoint={onBreakpoint}
     >
-      <Menu theme="dark" defaultSelectedKeys={[pathname]} defaultOpenKeys={defaultOpenKeys} mode="inline">
-        {sortedRoutes.map(route => recursivelyGenerateMenuItems(route))}
+      <Menu
+        theme="dark"
+        defaultSelectedKeys={[pathname]}
+        defaultOpenKeys={defaultOpenKeys}
+        mode="inline"
+      >
+        {treeRoute.map(route => recursivelyGenerateMenuItems(route))}
       </Menu>
     </Sider>
   );
