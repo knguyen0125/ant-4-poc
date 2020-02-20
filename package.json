@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@ant-design/icons": "4.0.0-rc.0",
+    "@ant-design/icons": "^4.0.0-rc.0",
     "@craco/craco": "^5.6.3",
     "@loadable/babel-plugin": "^5.12.0",
     "@loadable/component": "^5.12.0",
@@ -44,8 +44,9 @@
   },
   "scripts": {
     "start": "craco start",
-    "start:proxy": "node mock/index.js",
+    "start:proxy": "concurrently -n mock,fe \"node mock/index.js\" \"MOCK=true craco start\"",
     "build": "craco build",
+    "build:analyze": "ANALYZE=true craco build",
     "test": "craco test",
     "eject": "react-scripts eject"
   },
@@ -66,6 +67,8 @@
   },
   "devDependencies": {
     "@types/express": "^4.17.2",
+    "concurrently": "^5.1.0",
+    "morgan": "^1.9.1",
     "prettier": "^1.19.1"
   }
 }
