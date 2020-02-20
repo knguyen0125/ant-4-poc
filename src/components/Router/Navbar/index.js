@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import { Layout, Menu } from "antd";
-import { Link } from "react-router-dom";
-import { getDefaultOpenKeys } from "../utils";
-import { useSelector } from "react-redux";
-import { menuSelector, treeMenuSelector } from "../../../store/modules/menu";
+import React, { useState, useEffect } from 'react';
+import { useLocation, Link } from 'react-router-dom';
+import { Layout, Menu } from 'antd';
+
+import { useSelector } from 'react-redux';
+import { getDefaultOpenKeys } from '../utils';
+import { MenuSelectors } from '../../../store/modules/menu';
 
 const { Sider } = Layout;
-const SubMenu = Menu.SubMenu;
+const { SubMenu } = Menu;
 
 const Navbar = ({
   collapsible,
@@ -15,17 +15,18 @@ const Navbar = ({
   onCollapse,
   collapsedWidth,
   breakpoint,
-  onBreakpoint
+  onBreakpoint,
 }) => {
-  const treeRoute = useSelector(treeMenuSelector);
-  const flatRoute = useSelector(menuSelector);
+  const treeRoute = useSelector(MenuSelectors.selectTreeMenu);
+  const flatRoute = useSelector(MenuSelectors.selectFlatMenu);
   const { pathname } = useLocation();
   const [defaultOpenKeys, setDefaultOpenKeys] = useState(null);
 
   // Getting default open keys is computationally intensive, and we only need to run it once when screen first start up
   useEffect(() => {
     setDefaultOpenKeys(getDefaultOpenKeys(flatRoute, pathname));
-  }, [flatRoute, pathname]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (!defaultOpenKeys) return null;
 
@@ -43,7 +44,7 @@ const Navbar = ({
           }
         >
           {route.subRoutes.map(childRoute =>
-            recursivelyGenerateMenuItems(childRoute)
+            recursivelyGenerateMenuItems(childRoute),
           )}
         </SubMenu>
       );

@@ -1,20 +1,21 @@
-import { Button, Layout } from "antd";
-import Navbar from "../../components/Router/Navbar";
-import { MenuUnfoldOutlined } from "@ant-design/icons";
-import SwitchBoard from "../../components/Router/SwitchBoard";
-import { BrowserRouter as Router } from "react-router-dom";
-import React, { useMemo, useState } from "react";
-import { rebuildPath } from "../../components/Router/utils";
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Button, Layout } from 'antd';
+import { MenuUnfoldOutlined, LogoutOutlined } from '@ant-design/icons';
+import Navbar from '../../components/Router/Navbar';
+import { AuthActions, AuthSelectors } from '../../store/modules/auth';
 
 const { Header, Content } = Layout;
 
-const DefaultLayout = props => {
+const DefaultLayout = ({ children, ...props }) => {
+  const dispatch = useDispatch();
   const [collapsed, setCollapsed] = useState(false);
   const [collapsedWidth, setCollapsedWidth] = useState(80);
   const [breakpointBroken, setBreakpointBroken] = useState(false);
+  const isLoggedIn = useSelector(AuthSelectors.selectLoggedIn);
 
-  const onCollapse = collapsed => {
-    setCollapsed(collapsed);
+  const onCollapse = collapseStatus => {
+    setCollapsed(collapseStatus);
   };
 
   const toggle = () => {
@@ -30,8 +31,16 @@ const DefaultLayout = props => {
     }
   };
 
+  const logout = () => {
+    dispatch(AuthActions.logout());
+  };
+
+  if (!isLoggedIn) {
+    return <div>{children}</div>;
+  }
+
   return (
-    <Layout style={{ minHeight: "100vh" }}>
+    <Layout style={{ minHeight: '100vh' }}>
       <Navbar
         collapsible
         collapsed={collapsed}
@@ -41,12 +50,13 @@ const DefaultLayout = props => {
         onBreakpoint={toggleBreakpoint}
       />
       <Layout>
-        <Header style={{ background: "#fff", padding: 0, paddingLeft: 16 }}>
+        <Header style={{ background: '#fff', padding: 0, paddingLeft: 16 }}>
           {!breakpointBroken && (
             <Button icon={<MenuUnfoldOutlined />} onClick={toggle} />
           )}
+          {isLoggedIn && <Button icon={<LogoutOutlined />} onClick={logout} />}
         </Header>
-        <Content style={{ minHeight: 280 }}>{props.children}</Content>
+        <Content style={{ minHeight: 280 }}>{children}</Content>
       </Layout>
     </Layout>
   );

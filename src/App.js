@@ -1,23 +1,30 @@
-import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { ConfigProvider } from "antd";
-import SwitchBoard from "./components/Router/SwitchBoard";
-import { useDispatch, useSelector } from "react-redux";
-import { getMenu, menuSelector } from "./store/modules/menu";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import SwitchBoard from './components/Router/SwitchBoard';
+import { MenuActions, MenuConstants } from './store/modules/menu';
+import { AuthActions, AuthConstants } from './store/modules/auth';
+import { LoadingSelectors } from './store/modules/loading';
+import InitialLoadingLayout from './layout/InitialLoadingLayout';
 
 function App() {
   const dispatch = useDispatch();
-  const routes = useSelector(menuSelector);
+  const isLoading = useSelector(state =>
+    LoadingSelectors.selectLoading(state, [
+      MenuConstants.REQUEST_MENU,
+      AuthConstants.GET_CURRENT_USER,
+    ]),
+  );
 
   React.useEffect(() => {
-    dispatch(getMenu({ redirect: true }));
-  }, []);
+    dispatch(AuthActions.getCurrentUser({ showNotificationOnError: false }));
+    dispatch(MenuActions.getMenu());
+  }, [dispatch]);
 
-  return (
-    <ConfigProvider>
-      <SwitchBoard />
-    </ConfigProvider>
-  );
+  if (isLoading) {
+    return <InitialLoadingLayout loading={isLoading} />;
+  }
+
+  return <SwitchBoard />;
 }
 
 export default App;

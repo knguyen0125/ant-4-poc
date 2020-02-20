@@ -1,5 +1,5 @@
-import { sortBy } from "lodash";
-import { pathToRegexp } from "path-to-regexp";
+import { sortBy } from 'lodash';
+import { pathToRegexp } from 'path-to-regexp';
 
 const recursivelyRebuiltPath = (routes, route, currentPath) => {
   if (route.parentId === null) return `/${route.path}${currentPath}`;
@@ -10,14 +10,14 @@ const recursivelyRebuiltPath = (routes, route, currentPath) => {
   return recursivelyRebuiltPath(
     routes,
     parentRoute,
-    `/${route.path}${currentPath}`
+    `/${route.path}${currentPath}`,
   );
 };
 
 export const rebuildPath = routes => {
   return routes.map(route => ({
     ...route,
-    path: recursivelyRebuiltPath(routes, route, "")
+    path: recursivelyRebuiltPath(routes, route, ''),
   }));
 };
 
@@ -35,7 +35,7 @@ const recursivelyGenerateMenu = (routes, rootRoute) => {
       }
     });
 
-    rootRoute.subRoutes = sortBy(rootRoute.subRoutes, ["order", "id"]);
+    rootRoute.subRoutes = sortBy(rootRoute.subRoutes, ['order', 'id']);
   }
 
   return rootRoute;
@@ -54,7 +54,7 @@ export const getDefaultOpenKeys = (routes, path) => {
   while (currentRoute) {
     const parentRoute = routes.find(
       // eslint-disable-next-line no-loop-func
-      route => currentRoute && route.id === currentRoute.parentId
+      route => currentRoute && route.id === currentRoute.parentId,
     );
 
     if (!parentRoute) break;

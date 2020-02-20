@@ -1,14 +1,15 @@
 const express = require("express");
-const webAuthRouter = require("./routers/webAuth");
+const webAuthRouter = require("./routers/auth");
 const MenuRouter = require("./routers/menu");
-const morgan = require('morgan')
+const morgan = require("morgan");
 
 const app = express();
 const port = 13000;
 
-app.use(morgan('dev'))
+app.use(morgan("dev"));
+app.use(express.json());
 
-app.use("/webAuth", webAuthRouter);
+app.use("/auth", webAuthRouter);
 app.use("/menu", MenuRouter);
 
 app.get("/", (req, res) => {
