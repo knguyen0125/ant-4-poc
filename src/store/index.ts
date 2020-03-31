@@ -2,27 +2,32 @@ import { createStore, applyMiddleware, Store } from 'redux';
 import { createBrowserHistory } from 'history';
 import { routerMiddleware } from 'connected-react-router';
 import reduxFreeze from 'redux-freeze';
-import thunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import createRootReducer from './rootReducer';
-import IStore from './models/IStore';
+import rootSaga from './rootSaga';
+import {RootState} from 'typesafe-actions'
 
 export const history = createBrowserHistory();
 
-type ConfigureStoreType = (preloadedState: Partial<IStore>) => Store<IStore>;
+type ConfigureStoreType = (preloadedState: Partial<RootState>) => Store<RootState>;
 
 const configureStore: ConfigureStoreType = (preloadedState) => {
+  const sagaMiddleware = createSagaMiddleware();
+
   const middlewares = [
     process.env.NODE_ENV === 'development' ? reduxFreeze : null!,
     routerMiddleware(history),
-    thunk
+    sagaMiddleware,
   ].filter(Boolean);
 
-  const store: Store<IStore> = createStore(
+  const store: Store<RootState> = createStore(
     createRootReducer(history),
     preloadedState as any,
-    composeWithDevTools(applyMiddleware(...middlewares))
+    composeWithDevTools(applyMiddleware(...middlewares)),
   );
+
+  sagaMiddleware.run(rootSaga);
 
   return store;
 };

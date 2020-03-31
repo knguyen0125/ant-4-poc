@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from '../../../store/hooks';
 import { push } from 'connected-react-router';
 import { useLocation } from 'react-router-dom';
 import { Button } from 'antd';
@@ -19,7 +19,9 @@ const Login = () => {
   }, [currentUser, query.from, dispatch]);
 
   const handleLogin = () => {
-    dispatch(AuthActions.login('admin', 'password'));
+    dispatch(
+      AuthActions.login.request({ username: 'admin', password: 'password' }),
+    );
   };
 
   return (

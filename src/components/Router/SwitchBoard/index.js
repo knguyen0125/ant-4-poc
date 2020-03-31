@@ -2,13 +2,12 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import loadable from '@loadable/component';
 
-import { useSelector } from 'react-redux';
+import { useSelector } from '../../../store/hooks';
 import routeMap from './routeMap';
 import DefaultLayout from '../../../layout/DefaultLayout';
 import Login from '../../../views/WebAuthentication/Login';
 import PrivateRoute from '../PrivateRoute';
 import { MenuSelectors } from '../../../store/modules/menu';
-import { AuthSelectors } from '../../../store/modules/auth';
 
 const NotFound = loadable(() => import('../../../views/Exceptions/NotFound'));
 const ServerError = loadable(() =>

@@ -1,11 +1,5 @@
-import IAction from '../../models/IAction';
-import * as ActionUtility from '../../utils/ActionUtility';
-import {CLEAR_ALL, REMOVE} from './constants';
+import { createAction } from 'typesafe-actions';
 
-export function removeById(id: string): IAction<string> {
-  return ActionUtility.createAction(REMOVE, id);
-}
+export const removeById = createAction('@ERROR/REMOVE')<string>();
 
-export function clearAll(): IAction<undefined> {
-  return ActionUtility.createAction(CLEAR_ALL);
-}
+export const clearAll = createAction('@ERROR/CLEAR_ALL')<void>();

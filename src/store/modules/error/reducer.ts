@@ -1,16 +1,13 @@
-import {Reducer} from 'redux';
-import IAction from '../../models/IAction';
-import { CLEAR_ALL, REMOVE } from './constants';
+import { Reducer } from 'redux';
+import * as ErrorActions from './actions';
 import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 import IErrorState from './models/IErrorState';
-
+import { getType } from 'typesafe-actions';
 
 const initialState: IErrorState = {};
 
-// type ErrorReducer = (state: IErrorState, action: IAction<any>) => Reducer<IErrorState>
-
-const errorReducer: Reducer<IErrorState> = (state = initialState, action: IAction<any>) => {
-  if (action.type === REMOVE) {
+const errorReducer: Reducer<IErrorState> = (state = initialState, action) => {
+  if (action.type === getType(ErrorActions.removeById)) {
     return Object.entries(state).reduce(
       (newState: object, [key, value]: [string, HttpErrorResponseModel]) => {
         if (value.id !== action.payload) {
@@ -20,31 +17,38 @@ const errorReducer: Reducer<IErrorState> = (state = initialState, action: IActio
 
         return newState;
       },
-      {}
+      {},
     );
   }
 
-  if (action.type === CLEAR_ALL) {
+  if (action.type === getType(ErrorActions.clearAll)) {
     return initialState;
   }
 
-  const isFinishedRequestType = action.type.includes('_FINISHED');
-  const isStartRequestType = action.type.includes('REQUEST_') && !isFinishedRequestType;
+  const isFinishedRequestType =
+    action.type.includes('_SUCCESS') || action.type.includes('_FAILURE');
+  const isStartRequestType =
+    action.type.includes('REQUEST_') && !isFinishedRequestType;
 
   if (isStartRequestType) {
-    const {[`${action.type}_FINISHED`]: value, ...stateWithoutFinishedType}  = state;
+    const { [`${action.type}`]: value, ...stateWithoutFinishedType } = state;
 
     return stateWithoutFinishedType;
   }
 
-  const isError = isFinishedRequestType && Boolean(action.error);
+  const isError =
+    isFinishedRequestType && action.payload instanceof HttpErrorResponseModel;
   if (!isError) {
     return state;
   }
 
+  const requestName = action.type
+    .replace('_SUCCESS', '_START')
+    .replace('_FAILURE', '_START');
+
   return {
     ...state,
-    [action.type]: action.payload
+    [requestName]: action.payload,
   };
 };
 

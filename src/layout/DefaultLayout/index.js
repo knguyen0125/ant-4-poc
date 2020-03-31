@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { Button, Layout } from 'antd';
 import { MenuUnfoldOutlined, LogoutOutlined } from '@ant-design/icons';
+import { useDispatch, useSelector } from '../../store/hooks';
 import Navbar from '../../components/Router/Navbar';
 import { AuthActions, AuthSelectors } from '../../store/modules/auth';
 
@@ -14,7 +14,7 @@ const DefaultLayout = ({ children, ...props }) => {
   const [breakpointBroken, setBreakpointBroken] = useState(false);
   const isLoggedIn = useSelector(AuthSelectors.selectLoggedIn);
 
-  const onCollapse = collapseStatus => {
+  const onCollapse = (collapseStatus) => {
     setCollapsed(collapseStatus);
   };
 
@@ -22,7 +22,7 @@ const DefaultLayout = ({ children, ...props }) => {
     setCollapsed(!collapsed);
   };
 
-  const toggleBreakpoint = broken => {
+  const toggleBreakpoint = (broken) => {
     setBreakpointBroken(broken);
     if (broken) {
       setCollapsedWidth(0);
@@ -32,7 +32,7 @@ const DefaultLayout = ({ children, ...props }) => {
   };
 
   const logout = () => {
-    dispatch(AuthActions.logout());
+    dispatch(AuthActions.logout.request());
   };
 
   if (!isLoggedIn) {

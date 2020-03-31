@@ -1,19 +1,9 @@
-import {
-  createThunkAction,
-  ThunkEffectMetadata
-} from '../../utils/ActionUtility';
-import { REQUEST_MENU } from './constants';
+import { createAsyncAction } from 'typesafe-actions';
+import HttpErrorResponseModel from "../../models/HttpErrorResponseModel";
 
-export function getMenu(meta: ThunkEffectMetadata = {}) {
-  return createThunkAction(
-    REQUEST_MENU,
-    {
-      redirectOnError: ['5xx'],
-      ...meta
-    },
-    {
-      method: 'GET',
-      url: '/api/menu'
-    }
-  );
-}
+export const getMenu = createAsyncAction(
+  '@MENU/REQUEST_GET_MENU_START',
+  '@MENU/REQUEST_GET_MENU_SUCCESS',
+  '@MENU/REQUEST_GET_MENU_FAILURE',
+)<void, any, HttpErrorResponseModel>();
+

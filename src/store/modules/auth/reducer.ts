@@ -1,29 +1,17 @@
 // Reducer
 
-import baseReducer from '../../utils/baseReducer';
-import { LOGIN_FINISHED, GET_CURRENT_USER_FINISHED, LOGOUT_FINISHED } from './constants';
+import { createReducer } from 'typesafe-actions';
+import * as AuthActions from './actions';
+import { combineReducers } from 'redux';
 
-const initialState: { [k: string]: any } = {
-  current: null
-};
+const current = createReducer(null as any)
+  .handleAction(AuthActions.login.success, (state, action) => action.payload)
+  .handleAction(
+    AuthActions.getCurrentUser.success,
+    (state, action) => action.payload,
+  )
+  .handleAction(AuthActions.logout.success, () => null);
 
-export default baseReducer(initialState, {
-  [LOGIN_FINISHED](state, action) {
-    return {
-      ...state,
-      current: action.payload
-    };
-  },
-  [LOGOUT_FINISHED](state, action) {
-    return {
-      ...state,
-      current: null
-    };
-  },
-  [GET_CURRENT_USER_FINISHED](state, action) {
-    return {
-      ...state,
-      current: action.payload
-    };
-  }
+export default combineReducers({
+  current,
 });

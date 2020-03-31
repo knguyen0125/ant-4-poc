@@ -1,21 +1,17 @@
 import { reverse, sortBy } from 'lodash';
-import baseReducer from '../../utils/baseReducer';
 import { generateMenu, rebuildPath } from '../../../components/Router/utils';
-import { REQUEST_MENU_FINISHED } from './constants';
+import * as MenuActions from './actions';
+import { createReducer } from 'typesafe-actions';
 
-const initialState: { [k: string]: any } = {
-  flatMenu: [],
-  treeMenu: []
-};
+export default createReducer({
+  flatMenu: [] as any[],
+  treeMenu: [] as any[],
+}).handleAction(MenuActions.getMenu.success, (state, action) => {
+  const rebuiltPath = rebuildPath(action.payload.data);
 
-export default baseReducer(initialState, {
-  [REQUEST_MENU_FINISHED](state, action) {
-    const rebuiltPath = rebuildPath(action.payload.data);
-
-    return {
-      ...state,
-      flatMenu: reverse(sortBy(rebuiltPath, route => route.path.length)),
-      treeMenu: sortBy(generateMenu(rebuiltPath), ['order', 'id'])
-    };
-  }
+  return {
+    ...state,
+    flatMenu: reverse(sortBy(rebuiltPath, (route) => route.path.length)),
+    treeMenu: sortBy(generateMenu(rebuiltPath), ['order', 'id']),
+  };
 });

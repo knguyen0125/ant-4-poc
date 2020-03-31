@@ -1,13 +1,19 @@
-import {Selector} from 'reselect';
-import {createDeepEqualSelector} from '../../utils/SelectorUtility';
-import IStore from '../../models/IStore';
+import { Selector } from 'reselect';
+import { createDeepEqualSelector } from '../../utils/SelectorUtility';
+import { RootState } from 'typesafe-actions';
 
-export const selectFlatMenu: Selector<IStore, any[]> = createDeepEqualSelector(
-  state => state.menu,
-  menu => menu.flatMenu
+export const selectFlatMenu: Selector<
+  RootState,
+  any[]
+> = createDeepEqualSelector(
+  (state) => state.menu,
+  (menu) => menu.flatMenu,
 );
 
-export const selectTreeMenu: Selector<IStore, any[]> = createDeepEqualSelector(
-  state => state.menu,
-  menu => menu.treeMenu
+export const selectTreeMenu: Selector<
+  RootState,
+  any[]
+> = createDeepEqualSelector(
+  (state) => state.menu,
+  (menu) => menu.treeMenu,
 );

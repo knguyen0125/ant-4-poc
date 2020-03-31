@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 
-import { useSelector } from 'react-redux';
+import { useSelector } from '../../../store/hooks';
 import { getDefaultOpenKeys } from '../utils';
 import { MenuSelectors } from '../../../store/modules/menu';
 

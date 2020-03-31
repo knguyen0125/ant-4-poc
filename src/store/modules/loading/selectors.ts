@@ -1,13 +1,13 @@
-import {createSelector, ParametricSelector}  from 'reselect';
-import ILoadingState from './models/ILoadingState';
+import { createSelector, ParametricSelector } from 'reselect';
+import { RootState } from 'typesafe-actions';
 
-function _selectLoading(requestingState: ILoadingState, actionTypes: string[]): boolean {
-  return actionTypes.some((actionType: string) => requestingState[actionType]);
-}
-
-export const selectLoading: ParametricSelector<any, string[], boolean> = createSelector(
-  (state: any) => state.loading,
-  (state: any, actionTypes: string[]) => actionTypes,
-  _selectLoading
+export const selectLoading: ParametricSelector<
+  RootState,
+  string[],
+  boolean
+> = createSelector(
+  (state) => state.loading,
+  (_, actionTypes) => actionTypes,
+  (loading, actionTypes) =>
+    actionTypes.some((actionType) => loading[actionType]),
 );
-

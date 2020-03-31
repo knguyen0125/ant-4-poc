@@ -1,18 +1,21 @@
-import IAction from '../../models/IAction';
 import ILoadingState from './models/ILoadingState';
+import { Reducer } from 'redux';
 
 export const initialState: ILoadingState = {};
 
-const loadingReducer = (state = initialState, action: IAction<any>) => {
+const loadingReducer: Reducer<ILoadingState> = (
+  state = initialState,
+  action,
+) => {
   const isRequestType = action.type.includes('REQUEST_');
   if (!isRequestType) return state;
 
-  const requestName = action.type.replace('_FINISHED', '');
-  const isFinishedRequestType = action.type.includes('_FINISHED');
+  const requestName = action.type.replace('_SUCCESS', '_START').replace('_FAILURE', '_START');
+  const isFinishedRequestType = action.type.includes('_SUCCESS') || action.type.includes('_FAILURE');
 
   return {
     ...state,
-    [requestName]: !isFinishedRequestType
+    [requestName]: !isFinishedRequestType,
   };
 };
 

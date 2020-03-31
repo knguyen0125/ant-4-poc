@@ -1,16 +1,12 @@
 import React from 'react';
 import { Route, RouteProps, Redirect, useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import {isArray} from 'lodash';
+import { useSelector } from '../../../store/hooks';
 import { AuthSelectors } from '../../../store/modules/auth';
-import IStore from '../../../store/models/IStore';
 
 const PrivateRoute: React.FC<RouteProps> = ({ children, ...props }) => {
   const location = useLocation();
 
-  const currentUser = useSelector((state: IStore) =>
-    AuthSelectors.selectCurrentUser(state)
-  );
+  const currentUser = useSelector(AuthSelectors.selectCurrentUser);
 
   if (!currentUser) {
     // @ts-ignore
@@ -20,8 +16,8 @@ const PrivateRoute: React.FC<RouteProps> = ({ children, ...props }) => {
           pathname: '/login',
           search: `?from=${location.pathname}`,
           state: {
-            from: location.pathname
-          }
+            from: location.pathname,
+          },
         }}
       />
     );

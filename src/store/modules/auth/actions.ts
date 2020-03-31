@@ -1,39 +1,20 @@
-import {createAction, createThunkAction, ThunkEffectMetadata} from '../../utils/ActionUtility';
-import {LOGIN, GET_CURRENT_USER, LOGOUT} from './constants';
+import { createAsyncAction } from 'typesafe-actions';
+import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 
-export const login = (username: string, password: string, meta: ThunkEffectMetadata = {}) => {
-  return createThunkAction(
-    LOGIN,
-    meta,
-    {
-      url: '/api/auth/login',
-      method: 'POST',
-      data: {
-        username,
-        password
-      }
-    }
-  );
-};
+export const login = createAsyncAction(
+  '@AUTH/REQUEST_LOGIN_START',
+  '@AUTH/REQUEST_LOGIN_SUCCESS',
+  '@AUTH/REQUEST_LOGIN_FAILURE',
+)<{ username: string; password: string }, any, HttpErrorResponseModel>();
 
-export const getCurrentUser = (meta: ThunkEffectMetadata = {}) => {
-  return createThunkAction(
-    GET_CURRENT_USER,
-    meta,
-    {
-      url: '/api/auth/current',
-      method: 'GET',
-    }
-  );
-};
+export const getCurrentUser = createAsyncAction(
+  '@AUTH/REQUEST_CURRENT_USER_START',
+  '@AUTH/REQUEST_CURRENT_USER_SUCCESS',
+  '@AUTH/REQUEST_CURRENT_USER_FAILURE',
+)<void, any, HttpErrorResponseModel>();
 
-export const logout = (meta: ThunkEffectMetadata = {}) => {
-  return createThunkAction(
-    LOGOUT,
-    meta,
-    {
-      url: '/api/auth/logout',
-      method: 'GET'
-    }
-  );
-};
+export const logout = createAsyncAction(
+  '@AUTH/REQUEST_LOGOUT_START',
+  '@AUTH/REQUEST_LOGOUT_SUCCESS',
+  '@AUTH/REQUEST_LOGOUT_FAILURE',
+)<void, void, HttpErrorResponseModel>();

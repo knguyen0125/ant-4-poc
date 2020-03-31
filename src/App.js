@@ -1,23 +1,23 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from './store/hooks';
 import SwitchBoard from './components/Router/SwitchBoard';
-import { MenuActions, MenuConstants } from './store/modules/menu';
-import { AuthActions, AuthConstants } from './store/modules/auth';
+import * as AuthActions from './store/modules/auth/actions'
+import * as MenuActions from './store/modules/menu/actions'
 import { LoadingSelectors } from './store/modules/loading';
 import InitialLoadingLayout from './layout/InitialLoadingLayout';
 
 function App() {
   const dispatch = useDispatch();
-  const isLoading = useSelector(state =>
+  const isLoading = useSelector((state) =>
     LoadingSelectors.selectLoading(state, [
-      MenuConstants.REQUEST_MENU,
-      AuthConstants.GET_CURRENT_USER,
+      MenuActions.getMenu.request,
+      AuthActions.getCurrentUser.request
     ]),
   );
 
   React.useEffect(() => {
-    dispatch(AuthActions.getCurrentUser({ showNotificationOnError: false }));
-    dispatch(MenuActions.getMenu());
+    dispatch(AuthActions.getCurrentUser.request());
+    dispatch(MenuActions.getMenu.request());
   }, [dispatch]);
 
   if (isLoading) {
