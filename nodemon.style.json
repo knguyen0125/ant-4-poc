@@ -1,0 +1,7 @@
+{
+  "verbose": true,
+  "watch": [
+    "src/styles/theme.less"
+  ],
+  "ext": "less"
+}

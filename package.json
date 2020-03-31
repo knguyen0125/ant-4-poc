@@ -48,7 +48,7 @@
   },
   "scripts": {
     "start": "craco start",
-    "start:mock": "MOCK=true craco start",
+    "start:mock": "BROWSER=none MOCK=true nodemon --config nodemon.style.json -- craco start",
     "start:proxyServer": "nodemon --config nodemon.mock.json mock/index.js",
     "start:proxy": "concurrently -n mock,fe \"npm:start:proxyServer\" \"npm:start:mock\"",
     "build": "craco build",
