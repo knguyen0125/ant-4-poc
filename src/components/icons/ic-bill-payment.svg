@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="24" viewBox="0 0 25 24">
+    <defs>
+        <path id="ic-bill-payment_svg__a"
+              d="M6 4h12v15a1 1 0 01-1.915.397 1.502 1.502 0 00-1.374-.897H6V4zM4.789 23h12.21c.105 0 .202-.022.304-.03a3.983 3.983 0 003.667-3.667c.008-.102.03-.2.03-.303V2.5A1.5 1.5 0 0019.5 1h-15A1.5 1.5 0 003 2.5v16h-.5a1.499 1.499 0 00-1.374 2.103A4.003 4.003 0 004.789 23zm7.21-17H9a1.5 1.5 0 100 3h3a1.5 1.5 0 100-3"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd" transform="translate(.266)">
+        <path d="M0 0h24v24H0z"/>
+        <mask id="ic-bill-payment_svg__b" fill="currentColor">
+            <use xlink:href="#ic-bill-payment_svg__a"/>
+        </mask>
+        <use fill="currentColor" xlink:href="#ic-bill-payment_svg__a"/>
+        <g fill="currentColor" mask="url(#ic-bill-payment_svg__b)">
+            <path d="M0 0h24v24H0z"/>
+        </g>
+    </g>
+</svg>

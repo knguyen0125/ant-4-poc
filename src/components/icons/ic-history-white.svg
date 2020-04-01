@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="24" viewBox="0 0 25 24">
+    <defs>
+        <path id="ic-history-white_svg__a"
+              d="M4.5 11A1.5 1.5 0 006 12.5h4.001v-3H6A1.5 1.5 0 004.5 11M17 18.5h-1.5a1 1 0 01-1-1v-3a1 1 0 112 0v2h2a1 1 0 110 2H17zm-.5-7.5c.169 0 .335.011.5.025a5.476 5.476 0 014.001 2.324 5.467 5.467 0 010 6.302A5.478 5.478 0 0116.502 22a5.506 5.506 0 01-4.895-3 5.466 5.466 0 011.13-6.5A5.487 5.487 0 0116.5 11zm2-11A1.5 1.5 0 0120 1.5V9h-3V3H3v16h7.001v3H1.5A1.5 1.5 0 010 20.5v-19A1.5 1.5 0 011.5 0zM14 5a1.5 1.5 0 010 3H6a1.5 1.5 0 010-3z"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <path d="M.266 24h24V0h-24z"/>
+        <g transform="translate(1.266 1)">
+            <mask id="ic-history-white_svg__b" fill="#fff">
+                <use xlink:href="#ic-history-white_svg__a"/>
+            </mask>
+            <use fill="currentColor" xlink:href="#ic-history-white_svg__a"/>
+            <g mask="url(#ic-history-white_svg__b)">
+                <path fill="currentColor" d="M-1-1h24v24H-1z"/>
+            </g>
+        </g>
+    </g>
+</svg>

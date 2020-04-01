@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="24" viewBox="0 0 25 24">
+    <defs>
+        <path id="ic-topup-h-white_svg__a"
+              d="M20.5 18.8a1 1 0 11-2 0V17h-3v1.8a1 1 0 01-1 1 .965.965 0 01-.5-.153.987.987 0 01-.5-.847v-5.6c0-.366.207-.673.5-.847a.956.956 0 01.5-.153 1 1 0 011 1V15h3v-1.8a1 1 0 112 0v5.6zM14 1a2 2 0 012 2v5h-3V4H4v14h5v2c0 .347.059.678.143 1 .205.79.643 1.48 1.24 2H3a2 2 0 01-2-2V3a2 2 0 012-2zm7 9a2.001 2.001 0 012 2v8a1.997 1.997 0 01-2 2h-8a1.994 1.994 0 01-1.414-.587 2.038 2.038 0 01-.31-.413A1.997 1.997 0 0111 20v-8a1.985 1.985 0 01.586-1.414c.122-.122.265-.221.414-.308A1.98 1.98 0 0113 10z"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd" transform="translate(.266)">
+        <path d="M0 0h24v24H0z"/>
+        <mask id="ic-topup-h-white_svg__b" fill="currentColor">
+            <use xlink:href="#ic-topup-h-white_svg__a"/>
+        </mask>
+        <use fill="currentColor" xlink:href="#ic-topup-h-white_svg__a"/>
+        <g fill="currentColor" mask="url(#ic-topup-h-white_svg__b)">
+            <path d="M0 0h24v24H0z"/>
+        </g>
+    </g>
+</svg>

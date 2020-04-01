@@ -13,38 +13,40 @@ MenuRouter.get("/", (req, res) => {
       isPrivate: true,
       path: "",
       isExact: true,
-      isHidden: false
+      isHidden: false,
+      icon: 'home'
     },
     {
-      title: "Service",
+      title: "Money Transfer",
       component: "dummy",
       id: 2,
       parentId: null,
       order: 2,
       isPrivate: true,
-      path: "service",
+      path: "money-transfer",
       isExact: true,
-      isHidden: false
+      isHidden: false,
+      icon: 'moneyTransfer'
     },
     {
-      title: "Service List",
-      component: "service",
+      title: "Domestic",
+      component: "dummy",
       id: 3,
       parentId: 2,
       order: 1,
       isPrivate: true,
-      path: "list",
+      path: "domestic",
       isExact: false,
       isHidden: false
     },
     {
-      title: "Service List Edit",
-      component: "service",
+      title: "International",
+      component: "dummy",
       id: 6,
-      parentId: 3,
-      order: 1,
+      parentId: 2,
+      order: 2,
       isPrivate: true,
-      path: "test",
+      path: "international",
       isExact: false,
       isHidden: false
     },

@@ -47,6 +47,7 @@ const DefaultLayout = ({ children, ...props }) => {
         onCollapse={onCollapse}
         collapsedWidth={collapsedWidth}
         breakpoint="sm"
+        breakpointBroken={breakpointBroken}
         onBreakpoint={toggleBreakpoint}
       />
       <Layout>
