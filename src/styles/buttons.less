@@ -1,0 +1,97 @@
+@import './theme';
+@import '~antd/lib/button/style/mixin';
+
+.button-variant-other-new(@color; @background; @border) {
+  .button-color(@color; @background; @border);
+
+  &:hover,
+  &:focus {
+    & when (@theme = dark) {
+      .button-color(@primary-5; @background; @primary-5);
+    }
+    & when not (@theme = dark) {
+      .button-color(
+              @color; ~`colorPalette('@{background}', 5)`;
+              ~`colorPalette('@{border}', 5) `
+      );
+    }
+  }
+  &:active,
+  &.active {
+    & when (@theme = dark) {
+      .button-color(@primary-7; @background; @primary-7);
+    }
+    & when not (@theme = dark) {
+      .button-color(
+              ~`colorPalette('@{btn-primary-bg}', 7) `; @background;
+              ~`colorPalette('@{btn-primary-bg}', 7) `
+      );
+    }
+  }
+  .button-disabled();
+}
+
+// danger button style
+.btn-success() {
+  .button-variant-other-new(@btn-success-color, @btn-success-bg, @btn-success-border);
+}
+// danger button style
+.btn-warning() {
+  .button-variant-other-new(@btn-warning-color, @btn-warning-bg, @btn-warning-border);
+}
+
+.@{btn-prefix-cls} {
+  &-success {
+    .btn-success;
+  }
+  &-background-ghost&-success {
+    .button-variant-ghost(@btn-success-bg);
+  }
+
+  &-warning {
+    .btn-warning;
+  }
+  &-background-ghost&-warning {
+    .button-variant-ghost(@btn-warning-bg);
+  }
+
+  &-icon {
+    .button-variant-primary(@primary-color, @white);
+    border: none;
+    min-width: 40px;
+    width: 40px;
+
+    box-shadow: 0 6px 9px 0 rgba(144, 164, 183, 0.22);
+
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+      & when (@theme = dark) {
+        .button-color(@primary-5; @white; transparent);
+      }
+      & when not (@theme = dark) {
+        .button-color(
+                @primary-3; @white; @white
+        );
+      }
+    }
+    .button-disabled(#c7c7c7, @white, @white)
+  }
+
+  &-lg {
+    .button-size(
+            @btn-height-lg; @btn-padding-horizontal-lg; @btn-font-size-lg; @btn-border-radius-base
+    );
+    min-width: 220px;
+  }
+  &-sm {
+    .button-size(
+            @btn-height-sm; @btn-padding-horizontal-sm; @btn-font-size-sm; @btn-border-radius-sm
+    );
+    line-height: 1.5715;
+    min-width: 110px;
+  }
+
+  min-width: 175px;
+}

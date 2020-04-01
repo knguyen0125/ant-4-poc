@@ -7,16 +7,16 @@
 //@html-selector: html;
 //
 //// -------- Colors -----------
-//@primary-color: @blue-6;
-//@info-color: @blue-6;
-//@success-color: @green-6;
-//@processing-color: @blue-6;
-//@error-color: @red-5;
-//@highlight-color: @red-5;
-//@warning-color: @gold-6;
-//@normal-color: #d9d9d9;
-//@white: #fff;
-//@black: #000;
+@primary-color: #144062;
+@info-color: #147bd1;
+@success-color: #2aceaa;
+@processing-color: @blue-6;
+@error-color: #ff4d4f;
+@highlight-color: @red-5;
+@warning-color: #f19b2f;
+@normal-color: #d9d9d9;
+@white: #fff;
+@black: #000;
 //
 //// Color used by default to control hover and active backgrounds and for
 //// alert info backgrounds.
@@ -186,7 +186,16 @@
 //
 //@btn-disable-color: @disabled-color;
 //@btn-disable-bg: @disabled-bg;
-//@btn-disable-border: @border-color-base;
+@btn-disable-border: @disabled-bg;
+
+@btn-success-color: @white;
+@btn-success-bg: @success-color;
+@btn-success-border: @success-color;
+
+@btn-warning-color: @white;
+@btn-warning-bg: @warning-color;
+@btn-warning-border: @warning-color;
+
 //
 //@btn-default-ghost-color: @component-background;
 //@btn-default-ghost-bg: transparent;
@@ -194,22 +203,22 @@
 //
 //@btn-font-size-lg: @font-size-lg;
 //@btn-font-size-sm: @font-size-base;
-//@btn-padding-horizontal-base: @padding-md - 1px;
-//@btn-padding-horizontal-lg: @btn-padding-horizontal-base;
-//@btn-padding-horizontal-sm: @padding-xs - 1px;
+@btn-padding-horizontal-base: 64px;
+@btn-padding-horizontal-lg: 96px;
+@btn-padding-horizontal-sm: 38px;
 //
-//@btn-height-base: @height-base;
-//@btn-height-lg: @height-lg;
-//@btn-height-sm: @height-sm;
+@btn-height-base: 40px;
+@btn-height-lg: 40px;
+@btn-height-sm: 40px;
 //
-//@btn-circle-size: @btn-height-base;
+//@btn-circle-size: 30px;
 //@btn-circle-size-lg: @btn-height-lg;
 //@btn-circle-size-sm: @btn-height-sm;
 //
 //@btn-square-size: @btn-height-base;
 //@btn-square-size-lg: @btn-height-lg;
 //@btn-square-size-sm: @btn-height-sm;
-//@btn-square-only-icon-size: @font-size-base + 2px;
+@btn-square-only-icon-size: 30px;
 //@btn-square-only-icon-size-sm: @font-size-base;
 //@btn-square-only-icon-size-lg: @btn-font-size-lg + 2px;
 //
@@ -516,13 +525,14 @@
 //
 //// dark theme
 //@menu-dark-color: @text-color-secondary-dark;
-//@menu-dark-bg: @layout-header-background;
+@menu-dark-bg: #193f62;
 //@menu-dark-arrow-color: #fff;
-//@menu-dark-submenu-bg: #000c17;
+@menu-dark-submenu-bg: #152f4b;
 //@menu-dark-highlight-color: #fff;
-//@menu-dark-item-active-bg: @primary-color;
+@menu-dark-item-active-bg: #152f4b;
 //@menu-dark-selected-item-icon-color: @white;
 //@menu-dark-selected-item-text-color: @white;
+@menu-dark-item-active-bg: #152f4b;
 //@menu-dark-item-hover-bg: transparent;
 //// Spin
 //// ---

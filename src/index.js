@@ -7,6 +7,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import configureStore, { history } from './store';
+import '~/styles/index.less'
 
 const store = configureStore();
 
