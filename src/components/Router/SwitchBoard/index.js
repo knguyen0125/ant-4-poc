@@ -2,18 +2,16 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import loadable from '@loadable/component';
 
-import { useSelector } from '../../../store/hooks';
+import { useSelector } from '~/store/hooks';
 import routeMap from './routeMap';
-import DefaultLayout from '../../../layout/DefaultLayout';
-import Login from '../../../views/WebAuthentication/Login';
+import DefaultLayout from '~/layout/DefaultLayout';
+import Login from '~/views/WebAuthentication/Login';
 import PrivateRoute from '../PrivateRoute';
-import { MenuSelectors } from '../../../store/modules/menu';
+import { MenuSelectors } from '~/store/modules/menu';
 
-const NotFound = loadable(() => import('../../../views/Exceptions/NotFound'));
-const ServerError = loadable(() =>
-  import('../../../views/Exceptions/ServerError'),
-);
-const Forbidden = loadable(() => import('../../../views/Exceptions/Forbidden'));
+const NotFound = loadable(() => import('~/views/Exceptions/NotFound'));
+const ServerError = loadable(() => import('~/views/Exceptions/ServerError'));
+const Forbidden = loadable(() => import('~/views/Exceptions/Forbidden'));
 
 const SwitchBoard = () => {
   const sortedRoutes = useSelector(MenuSelectors.selectFlatMenu);
@@ -21,7 +19,7 @@ const SwitchBoard = () => {
   return (
     <DefaultLayout>
       <Switch>
-        {sortedRoutes.map(route => {
+        {sortedRoutes.map((route) => {
           let Component = routeMap[route.component];
           const PathRoute = route.isPrivate ? PrivateRoute : Route;
 
