@@ -1,9 +1,9 @@
 import React from 'react';
-import { useDispatch, useSelector } from '../../../store/hooks';
 import { push } from 'connected-react-router';
 import { useLocation } from 'react-router-dom';
 import { Button } from 'antd';
 import queryString from 'query-string';
+import { useDispatch, useSelector } from '../../../store/hooks';
 import { AuthActions, AuthSelectors } from '../../../store/modules/auth';
 
 const Login = () => {

@@ -2,9 +2,9 @@ import { createSelector, ParametricSelector } from 'reselect';
 import { RootState } from 'typesafe-actions';
 
 export const selectLoading: ParametricSelector<
-  RootState,
-  string[],
-  boolean
+RootState,
+string[],
+boolean
 > = createSelector(
   (state) => state.loading,
   (_, actionTypes) => actionTypes,

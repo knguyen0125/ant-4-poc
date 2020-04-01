@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import AntIcon from '@ant-design/icons';
 import { v4 as uuid } from 'uuid';
@@ -24,8 +25,7 @@ const Icon: React.FC<IconType> = ({ name, size = '1em', ...props }) => {
             width: size,
             height: size,
           },
-        })
-      }
+        })}
       {...props}
     />
   );

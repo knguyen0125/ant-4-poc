@@ -1,7 +1,7 @@
 import { reverse, sortBy } from 'lodash';
+import { createReducer } from 'typesafe-actions';
 import { generateMenu, rebuildPath } from '../../../components/Router/utils';
 import * as MenuActions from './actions';
-import { createReducer } from 'typesafe-actions';
 
 export default createReducer({
   flatMenu: [] as any[],

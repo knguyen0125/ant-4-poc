@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from './store/hooks';
 import SwitchBoard from './components/Router/SwitchBoard';
-import * as AuthActions from './store/modules/auth/actions'
-import * as MenuActions from './store/modules/menu/actions'
+import * as AuthActions from './store/modules/auth/actions';
+import * as MenuActions from './store/modules/menu/actions';
 import { LoadingSelectors } from './store/modules/loading';
 import InitialLoadingLayout from './layout/InitialLoadingLayout';
 

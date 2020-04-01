@@ -1,8 +1,9 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { ReactElement } from 'react';
-import lib from '../icons/lib';
 import { Button } from 'antd';
-import Icon from '~/components/icons/Icon';
 import { ButtonProps } from 'antd/es/button';
+import lib from '../icons/lib';
+import Icon from '~/components/icons/Icon';
 
 type IconButtonProps = {
   icon: keyof typeof lib | 'none' | ReactElement;

@@ -1,18 +1,18 @@
 import { createSelector, ParametricSelector, Selector } from 'reselect';
-import { createDeepEqualSelector } from '../../utils/SelectorUtility';
 import { RootState } from 'typesafe-actions';
+import { createDeepEqualSelector } from '../../utils/SelectorUtility';
 
 export const selectCurrentUser: Selector<
-  RootState,
-  any
+RootState,
+any
 > = createDeepEqualSelector(
   (state) => state.auth,
   (auth) => auth.current,
 );
 
 export const selectLoggedIn: Selector<
-  RootState,
-  boolean
+RootState,
+boolean
 > = createDeepEqualSelector(
   (state) => state.auth,
   (auth) => Boolean(auth.current),

@@ -37,6 +37,8 @@ module.exports = {
     '@typescript-eslint/no-use-before-define': 0,
     'no-param-reassign': 1,
     'react/jsx-wrap-multilines': 0,
+    'import/extensions': 0,
+    'import/no-unresolved': 0
   },
   ignorePatterns: ['node_modules', 'mock'],
 };

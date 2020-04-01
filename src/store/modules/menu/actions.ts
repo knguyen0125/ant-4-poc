@@ -1,5 +1,5 @@
 import { createAsyncAction } from 'typesafe-actions';
-import HttpErrorResponseModel from "../../models/HttpErrorResponseModel";
+import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 
 export const getMenu = createAsyncAction(
   '@MENU/REQUEST_GET_MENU_START',

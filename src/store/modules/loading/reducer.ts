@@ -1,5 +1,5 @@
-import ILoadingState from './models/ILoadingState';
 import { Reducer } from 'redux';
+import ILoadingState from './models/ILoadingState';
 
 export const initialState: ILoadingState = {};
 

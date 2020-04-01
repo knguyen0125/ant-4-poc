@@ -7,14 +7,36 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import configureStore, { history } from './store';
-import '~/styles/index.less'
+import '~/styles/index.less';
 
 const store = configureStore();
+
+const getPopupContainer = (triggerNode) => {
+  console.log(triggerNode?.parentNode.querySelector('[data-testid]'));
+
+  const parentNode = triggerNode?.parentNode;
+
+  let id = parentNode?.getAttribute('data-testid');
+
+  if (!id) {
+    id = parentNode
+      ?.querySelector('[data-testid]')
+      ?.getAttribute('data-testid');
+  }
+
+  const node = document.createElement('div');
+  node.setAttribute('data-test-class', 'ami-popup');
+  node.setAttribute('data-testid', id);
+
+  document.body.appendChild(node);
+
+  return node;
+};
 
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <ConfigProvider>
+      <ConfigProvider getPopupContainer={getPopupContainer}>
         <App />
       </ConfigProvider>
     </ConnectedRouter>

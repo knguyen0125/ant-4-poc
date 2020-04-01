@@ -1,8 +1,8 @@
 import { Reducer } from 'redux';
+import { getType } from 'typesafe-actions';
 import * as ErrorActions from './actions';
 import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 import IErrorState from './models/IErrorState';
-import { getType } from 'typesafe-actions';
 
 const initialState: IErrorState = {};
 

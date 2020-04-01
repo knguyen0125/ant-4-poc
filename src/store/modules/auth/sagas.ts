@@ -32,7 +32,7 @@ function* getCurrentUserSaga() {
 
   if (response instanceof HttpErrorResponseModel) {
     yield put(AuthActions.getCurrentUser.failure(response));
-    yield put(AuthActions.logout.request())
+    yield put(AuthActions.logout.request());
   } else {
     yield put(AuthActions.getCurrentUser.success(response.data));
   }

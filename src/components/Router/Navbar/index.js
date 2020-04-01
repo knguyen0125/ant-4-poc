@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 
+import { GoGear } from 'react-icons/go';
+import { CaretDownFilled, CaretUpFilled } from '@ant-design/icons';
+import styled from '@emotion/styled';
 import { useSelector } from '../../../store/hooks';
 import { getDefaultOpenKeys } from '../utils';
 import { MenuSelectors } from '../../../store/modules/menu';
-import { GoGear } from 'react-icons/go';
-import { CaretDownFilled, CaretUpFilled } from '@ant-design/icons';
 import Icon from '../../icons/Icon';
-import styled from '@emotion/styled';
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
@@ -151,11 +151,11 @@ const Navbar = ({
           {treeRoute.map((route) => recursivelyGenerateMenuItems(route))}
           <div style={{ flexGrow: 1 }} />
           <Menu.Item key="help">
-            <Icon name={'help'} style={{ verticalAlign: 'middle' }} />
+            <Icon name="help" style={{ verticalAlign: 'middle' }} />
             <span>Help / FAQs</span>
           </Menu.Item>
           <Menu.Item key="settings">
-            <Icon name={'settings'} style={{ verticalAlign: 'middle' }} />
+            <Icon name="settings" style={{ verticalAlign: 'middle' }} />
             <span>Settings</span>
           </Menu.Item>
         </Menu>

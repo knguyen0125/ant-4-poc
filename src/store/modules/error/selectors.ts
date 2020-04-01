@@ -1,12 +1,12 @@
 import { createSelector, ParametricSelector } from 'reselect';
+import { RootState } from 'typesafe-actions';
 import IErrorState from './models/IErrorState';
 import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
-import { RootState } from 'typesafe-actions';
 
 export const selectRawErrors: ParametricSelector<
-  RootState,
-  string[],
-  IErrorState
+RootState,
+string[],
+IErrorState
 > = createSelector(
   (state) => state.error,
   (_, actionTypes) => actionTypes,
@@ -14,9 +14,9 @@ export const selectRawErrors: ParametricSelector<
 );
 
 export const selectErrorText: ParametricSelector<
-  RootState,
-  string[],
-  string
+RootState,
+string[],
+string
 > = createSelector(
   (state) => state.error,
   (state, actionTypes) => actionTypes,
@@ -24,9 +24,9 @@ export const selectErrorText: ParametricSelector<
 );
 
 export const selectHasErrors: ParametricSelector<
-  RootState,
-  string[],
-  boolean
+RootState,
+string[],
+boolean
 > = createSelector(
   (state) => state.error,
   (state, actionTypes) => actionTypes,

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Card, Space } from 'antd';
+import {Button, Card, Modal, Select, Space, DatePicker} from 'antd';
 import TableIconButton from '~/components/TableIconButton';
 import IconButton from '~/components/IconButton';
 import lib from '~/components/icons/lib';
@@ -14,12 +14,23 @@ const Home = () => {
       </Space>
       <Space direction="vertical">
         {Object.entries(lib).map(([key, value]) => (
-          <TableIconButton icon={key} type="primary"/>
+          <div>
+            <TableIconButton icon={key} type="primary" />
+            <TableIconButton icon={key} type="danger" />
+            <TableIconButton icon={key} type="warning" />
+            <TableIconButton icon={key} type="success" />
+          </div>
         ))}
       </Space>
 
+      <Select data-test-id="select" data-testid="select">
+        <Select.Option>Test</Select.Option>
+      </Select>
+
+      <DatePicker />
+
       <Space direction="vertical">
-        <Button type="primary">Primary</Button>
+        <Button type="primary" onClick={() => Modal.success({content: 'hi'})}>Primary</Button>
         <Button type="primary" ghost>
           Primary
         </Button>

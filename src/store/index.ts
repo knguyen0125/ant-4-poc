@@ -4,9 +4,9 @@ import { routerMiddleware } from 'connected-react-router';
 import reduxFreeze from 'redux-freeze';
 import createSagaMiddleware from 'redux-saga';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import {RootState} from 'typesafe-actions';
 import createRootReducer from './rootReducer';
 import rootSaga from './rootSaga';
-import {RootState} from 'typesafe-actions'
 
 export const history = createBrowserHistory();
 
