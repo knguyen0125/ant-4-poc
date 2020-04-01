@@ -1,4 +1,4 @@
-import { createAsyncAction, createAction } from 'typesafe-actions';
+import { createAsyncAction } from 'typesafe-actions';
 import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 
 export const login = createAsyncAction(
@@ -18,10 +18,3 @@ export const logout = createAsyncAction(
   '@AUTH/REQUEST_LOGOUT_SUCCESS',
   '@AUTH/REQUEST_LOGOUT_FAILURE',
 )<void, void, HttpErrorResponseModel>();
-
-export const simpleAction = createAction('@AUTH/SDF')<string>();
-
-// login.request({username: 'a', password: 'b'}) // {type: '@AUTH/REQUEST_LOGIN_START', payload: {username: 'a', password: 'b'})
-// login.success
-// login.failure
-// simpleAction('a') // {type: '@AUTH/SDF', payload: 'a'}
