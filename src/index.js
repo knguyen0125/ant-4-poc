@@ -4,10 +4,10 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import { ConfigProvider } from 'antd';
 import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
 import configureStore, { history } from './store';
 import '~/styles/index.less';
+import I18nProvider from "~/I18NProvider";
 
 const store = configureStore();
 
@@ -37,7 +37,7 @@ ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <ConfigProvider getPopupContainer={getPopupContainer}>
-        <App />
+        <I18nProvider/>
       </ConfigProvider>
     </ConnectedRouter>
   </Provider>,

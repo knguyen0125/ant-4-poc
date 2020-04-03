@@ -1,6 +1,7 @@
 const express = require("express");
 const webAuthRouter = require("./routers/auth");
 const MenuRouter = require("./routers/menu");
+const LocaleRouter = require('./routers/locales')
 const morgan = require("morgan");
 
 const app = express();
@@ -11,6 +12,7 @@ app.use(express.json());
 
 app.use("/auth", webAuthRouter);
 app.use("/menu", MenuRouter);
+app.use('/locales', LocaleRouter)
 
 app.get("/", (req, res) => {
   res.json("test");
